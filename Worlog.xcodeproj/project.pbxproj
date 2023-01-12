@@ -13,6 +13,7 @@
 		CA7B1776296BFFF1009DF330 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA7B1775296BFFF1009DF330 /* Preview Assets.xcassets */; };
 		CA7B177D296C0368009DF330 /* FormNumericStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B177C296C0368009DF330 /* FormNumericStepper.swift */; };
 		CA7B177F296C0DE9009DF330 /* FormToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B177E296C0DE9009DF330 /* FormToggle.swift */; };
+		CAFF718F297075F00069BB93 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFF718E297075F00069BB93 /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,8 @@
 		CA7B1775296BFFF1009DF330 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA7B177C296C0368009DF330 /* FormNumericStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormNumericStepper.swift; sourceTree = "<group>"; };
 		CA7B177E296C0DE9009DF330 /* FormToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormToggle.swift; sourceTree = "<group>"; };
+		CAFF718D297075440069BB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CAFF718E297075F00069BB93 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +59,10 @@
 		CA7B176C296BFFEF009DF330 /* Worlog */ = {
 			isa = PBXGroup;
 			children = (
+				CAFF718D297075440069BB93 /* Info.plist */,
 				CA7B176D296BFFEF009DF330 /* WorlogApp.swift */,
 				CA7B176F296BFFEF009DF330 /* ContentView.swift */,
+				CAFF718E297075F00069BB93 /* ContentViewModel.swift */,
 				CA7B177C296C0368009DF330 /* FormNumericStepper.swift */,
 				CA7B177E296C0DE9009DF330 /* FormToggle.swift */,
 				CA7B1771296BFFF1009DF330 /* Assets.xcassets */,
@@ -149,6 +154,7 @@
 				CA7B177F296C0DE9009DF330 /* FormToggle.swift in Sources */,
 				CA7B1770296BFFEF009DF330 /* ContentView.swift in Sources */,
 				CA7B176E296BFFEF009DF330 /* WorlogApp.swift in Sources */,
+				CAFF718F297075F00069BB93 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +284,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Worlog/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Worlog;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -323,6 +330,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Worlog/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Worlog;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

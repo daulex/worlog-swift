@@ -9,56 +9,80 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var startingPunches: Int = 2
-    @State private var labelStartingPunches = "Starting punches"
-    
-    @State private var roundsInSet: Int = 5
-    @State private var labelRoundsInSet = "Rounds in set"
-    
-    @State private var sets: Int = 4
-    @State private var labelSets = "Sets"
-    
-    @State private var noDoubles: Bool = false
-    @State private var labelNoDoubles = "Force no doubles"
-    
-    @State private var alternateArms: Bool = true
-    @State private var labelAlternateArms = "Alternate arms"
-    
-    @State private var increasePunches: Bool = true
-    @State private var labelIncreasePunches = "Each round increases punches"
-    
+    @StateObject var viewModel = ContentViewModel()
+    @State private var showResult = false
+
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Text("Generate workout:")
-                .font(.largeTitle)
-                .multilineTextAlignment(.leading)
-            FormNumericStepper(value: $startingPunches, label: $labelStartingPunches)
-            FormNumericStepper(value: $roundsInSet, label: $labelRoundsInSet)
-            FormNumericStepper(value: $sets, label: $labelSets)
-            FormToggle(value: $noDoubles, label: $labelNoDoubles)
-            FormToggle(value: $alternateArms, label: $labelAlternateArms)
-            FormToggle(value: $increasePunches, label: $labelIncreasePunches)
-            
-            VStack{
-                Button(action: {}) {
-                    Text("Generate")
-                        .font(.title)
-                        .padding(10)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
+        NavigationView{
+            VStack {
+                
+                FormNumericStepper(value: $viewModel.startingPunches,
+                                   label: $viewModel.labelStartingPunches)
+                FormNumericStepper(value: $viewModel.roundsInSet,
+                                   label: $viewModel.labelRoundsInSet)
+                FormNumericStepper(value: $viewModel.sets,
+                                   label: $viewModel.labelSets)
+                
+                FormToggle(value: $viewModel.noDoubles,
+                           label: $viewModel.labelNoDoubles)
+                FormToggle(value: $viewModel.alternateArms,
+                           label: $viewModel.labelAlternateArms)
+                FormToggle(value: $viewModel.increasePunches, label:
+                            $viewModel.labelIncreasePunches)
+                
+                HStack(alignment: .center) {
+                    Group{
+                        Button(action: {
+                            self.viewModel.initWorkoutGeneration()
+                            self.showResult.toggle()
+                        }) {
+                            Text("Generate")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.top)
+                        .sheet(isPresented: $showResult, content: {
+                            GenerationResultView(rounds: self.viewModel.rounds)
+                        })
+                    }
                 }
-                .buttonStyle(.borderedProminent)
-                .frame(maxWidth: .infinity)
+                
+                Spacer()
             }
-            .padding(.top, 10)
+            .padding(.horizontal)
+            .navigationTitle("Generate form")
         }
-        .padding(20)
     }
 }
+
+struct GenerationResultView: View {
+    var rounds: [[[Int]]]
+    var body: some View{
+        List {
+            Text("result")
+            
+            ForEach(rounds.indices, id: \.self) { roundIndex in
+                Section(header: Text("Round \(roundIndex + 1)")) {
+                    ForEach(rounds[roundIndex].indices, id: \.self) { repIndex in
+                        HStack {
+                            ForEach(rounds[roundIndex][repIndex].indices, id: \.self) { punchIndex in
+                                Text("\(self.rounds[roundIndex][repIndex][punchIndex])")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
