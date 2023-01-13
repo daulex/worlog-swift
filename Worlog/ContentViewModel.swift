@@ -9,7 +9,6 @@ import SwiftUI
 
 final class ContentViewModel: ObservableObject {
     
-    
     @Published var startingPunches: Int = 2
     @Published var labelStartingPunches = "Starting punches"
     
@@ -20,13 +19,21 @@ final class ContentViewModel: ObservableObject {
     @Published var labelSets = "Sets"
     
     @Published var noDoubles: Bool = false
-    @Published var labelNoDoubles = "Force no doubles"
+    @Published var labelNoDoubles = "Force no double punches"
     
     @Published var alternateArms: Bool = true
     @Published var labelAlternateArms = "Alternate arms"
     
     @Published var increasePunches: Bool = true
     @Published var labelIncreasePunches = "Each round increases punches"
+    
+    @Published var roundDuration: Int = 60
+    @Published var labelRoundDuration: String = "seconds in a round"
+    @Published var restDuration: Int = 30
+    @Published var labelRestDuration: String = "seconds between rounds"
+    @Published var breakDuration: Int = 5
+    @Published var labelBreakDuration: String = "minutes between sets"
+    @Published var workoutDuration: Int = 0
 
     @Published var combination: [Int] = []
     @Published var reps: [[Int]] = []
@@ -37,6 +44,13 @@ final class ContentViewModel: ObservableObject {
     
 //    let leftArm: Set<Int> = [1,3,5]
 //    let rightArm: Set<Int> = [2,4,6]
+    func calculateWorkoutDuration(){
+        let WorkoutTime: Int = roundsInSet * sets * roundDuration
+        let RestTime: Int = (roundsInSet - 1) * sets * restDuration
+        let Breaks: Int = (sets - 1) * ( breakDuration * 60 )
+        self.workoutDuration = ( WorkoutTime + RestTime + Breaks ) / 60
+    }
+    
     func initWorkoutGeneration(){
         generateRounds()
     }
