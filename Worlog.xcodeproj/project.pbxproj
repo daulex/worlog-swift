@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA6105842972ED0800DCCD87 /* GenerationResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6105832972ED0800DCCD87 /* GenerationResultView.swift */; };
 		CA7B176E296BFFEF009DF330 /* WorlogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B176D296BFFEF009DF330 /* WorlogApp.swift */; };
 		CA7B1770296BFFEF009DF330 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B176F296BFFEF009DF330 /* ContentView.swift */; };
 		CA7B1772296BFFF1009DF330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA7B1771296BFFF1009DF330 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA6105832972ED0800DCCD87 /* GenerationResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationResultView.swift; sourceTree = "<group>"; };
 		CA7B176A296BFFEF009DF330 /* Worlog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Worlog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA7B176D296BFFEF009DF330 /* WorlogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlogApp.swift; sourceTree = "<group>"; };
 		CA7B176F296BFFEF009DF330 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				CA7B176D296BFFEF009DF330 /* WorlogApp.swift */,
 				CA7B176F296BFFEF009DF330 /* ContentView.swift */,
 				CAFF718E297075F00069BB93 /* ContentViewModel.swift */,
+				CA6105832972ED0800DCCD87 /* GenerationResultView.swift */,
 				CA7B177C296C0368009DF330 /* FormNumericStepper.swift */,
 				CA7B177E296C0DE9009DF330 /* FormToggle.swift */,
 				CA7B1771296BFFF1009DF330 /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 				CA7B177D296C0368009DF330 /* FormNumericStepper.swift in Sources */,
 				CA7B177F296C0DE9009DF330 /* FormToggle.swift in Sources */,
 				CA7B1770296BFFEF009DF330 /* ContentView.swift in Sources */,
+				CA6105842972ED0800DCCD87 /* GenerationResultView.swift in Sources */,
 				CA7B176E296BFFEF009DF330 /* WorlogApp.swift in Sources */,
 				CAFF718F297075F00069BB93 /* ContentViewModel.swift in Sources */,
 			);

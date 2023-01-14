@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     
     @StateObject var viewModel = ContentViewModel()
@@ -14,10 +15,9 @@ struct ContentView: View {
     @State private var showForm = false
     
     var body: some View {
-        
         NavigationView{
             VStack {
-                Text("Worlog will generate a comfortable \n \(Int(viewModel.workoutDuration)) minute workout")
+                Text("Worlog has generated a comfortable \n \(Int(viewModel.workoutDuration)) minute workout")
                     .multilineTextAlignment(.center)
                     .font(.headline)
                     .padding(.bottom)
@@ -46,8 +46,6 @@ struct ContentView: View {
                             .onChange(of: viewModel.sets, perform: { newValue in
                                 viewModel.calculateWorkoutDuration()
                             })
-                        
-                       
                         HStack {
                             Text("\(viewModel.roundDuration) ")
                                 .bold()
@@ -59,7 +57,6 @@ struct ContentView: View {
                                 viewModel.calculateWorkoutDuration()
                             })
                         }
-                        
                         HStack {
                             Text("\(viewModel.restDuration) ")
                                 .bold()
@@ -71,7 +68,6 @@ struct ContentView: View {
                                 viewModel.calculateWorkoutDuration()
                             })
                         }
-                        
                         HStack {
                             Text("\(viewModel.breakDuration) ")
                                 .bold()
@@ -93,9 +89,9 @@ struct ContentView: View {
                         
                         Button(action: {
                             self.viewModel.initWorkoutGeneration()
-                            self.showResult.toggle()
+                            self.showForm.toggle()
                         }) {
-                            Label("Generate", systemImage: "sparkles")
+                            Label("Re-Generate", systemImage: "sparkles")
                                 .font(.headline)
                                 .foregroundColor(.white)
                                 .padding()
@@ -103,21 +99,16 @@ struct ContentView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         .padding(.top)
-                        .sheet(isPresented: $showResult, content: {
-                            GenerationResultView(rounds: self.viewModel.rounds)
-                        })
                     }
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .presentationDetents([.fraction(0.7)])
                 })
-                
-                
                 Button(action: {
                     self.viewModel.initWorkoutGeneration()
                     self.showResult.toggle()
                 }) {
-                    Label("Generate", systemImage: "sparkles")
+                    Label("Re-generate", systemImage: "sparkles")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
@@ -128,39 +119,27 @@ struct ContentView: View {
                 .sheet(isPresented: $showResult, content: {
                     GenerationResultView(rounds: self.viewModel.rounds)
                 })
-            
-            
+                
+                Button(action: {
+                    self.showResult.toggle()
+                }) {
+                    Label("Start", systemImage: "play.fill")
+                        .font(.headline)
+                        .padding()
+                        .frame(width: 220)
+                }
+                .buttonStyle(.bordered)
+                .tint(.green)
+                .padding(.top)
             }
             .padding(.horizontal)
         }
         .onAppear{
             viewModel.calculateWorkoutDuration()
-        }
-        
-    }
-}
-
-struct GenerationResultView: View {
-    var rounds: [[[Int]]]
-    var body: some View{
-        List {
-            Text("result")
-            
-            ForEach(rounds.indices, id: \.self) { roundIndex in
-                Section(header: Text("Round \(roundIndex + 1)")) {
-                    ForEach(rounds[roundIndex].indices, id: \.self) { repIndex in
-                        HStack {
-                            ForEach(rounds[roundIndex][repIndex].indices, id: \.self) { punchIndex in
-                                Text("\(self.rounds[roundIndex][repIndex][punchIndex])")
-                            }
-                        }
-                    }
-                }
-            }
+            viewModel.initWorkoutGeneration()
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
