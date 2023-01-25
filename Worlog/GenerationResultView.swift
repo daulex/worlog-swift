@@ -18,6 +18,7 @@ struct GenerationResultView: View {
                 Spacer()
                 Button("Re-generate") {
                     settings.initWorkoutGeneration()
+                    settings.buildStageTypesArray()
                 }
             }
             

@@ -73,6 +73,7 @@ struct ContentView: View {
         .onAppear{
             settings.initWorkoutGeneration()
             settings.buildStageTimesArray()
+            settings.buildStageTypesArray()
         }
     }
 }
