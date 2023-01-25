@@ -120,6 +120,25 @@ final class GameSettings: ObservableObject {
          Let's make an array with the types
          */
         var stageTypes: [WorkoutStages] = []
+        var setNumberAtStageIndex: [Int] = []
+        let stagesInSet: Int = roundsInSet + roundsInSet - 1
+        let totalStagesCount: Int = getStagesCount()
+        
+        for stage in 0..<getStagesCount() {
+            if stage == 0 {
+                setNumberAtStageIndex.append(9999)
+                continue
+            }
+            if stage < stagesInSet {
+                setNumberAtStageIndex.append(1)
+                continue
+            }
+            if stage > stagesInSet && stage < stagesInSet * 2 {
+                setNumberAtStageIndex.append(2)
+                continue
+            }
+        }
+        print(setNumberAtStageIndex)
         
         for stage in 0..<getStagesCount() {
             // if stage == 0 (startup), starts at 0
@@ -139,6 +158,7 @@ final class GameSettings: ObservableObject {
                 }
                 continue
             }
+//            print((totalStagesCount - 1) / stage)
         }
         
         print(stageTypes)
