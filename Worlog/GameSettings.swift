@@ -116,53 +116,24 @@ final class GameSettings: ObservableObject {
     }
     
     func buildStageTypesArray() {
-        /**
-         Let's make an array with the types
-         */
         var stageTypes: [WorkoutStages] = []
-        var setNumberAtStageIndex: [Int] = []
         let stagesInSet: Int = roundsInSet + roundsInSet - 1
-        let totalStagesCount: Int = getStagesCount()
-        
-        for stage in 0..<getStagesCount() {
-            if stage == 0 {
-                setNumberAtStageIndex.append(9999)
-                continue
+        stageTypes.append(.warmup)
+
+        for i in 0..<sets {
+            for j in 0..<stagesInSet {
+                stageTypes.append(j % 2 == 0 ? .round : .shortRest)
             }
-            if stage < stagesInSet {
-                setNumberAtStageIndex.append(1)
-                continue
-            }
-            if stage > stagesInSet && stage < stagesInSet * 2 {
-                setNumberAtStageIndex.append(2)
-                continue
+            if i < sets-1 {
+                stageTypes.append(.longRest)
             }
         }
-        print(setNumberAtStageIndex)
-        
-        for stage in 0..<getStagesCount() {
-            // if stage == 0 (startup), starts at 0
-            if stage == 0 {
-                stageTypes.append(.warmup)
-                continue
-            }
-            if stage == 1 {
-                stageTypes.append(.round)
-                continue
-            }
-            if stage == 2 {
-                if roundsInSet == 1 && sets == 2 {
-                    stageTypes.append(.longRest)
-                } else {
-                    stageTypes.append(.shortRest)
-                }
-                continue
-            }
-//            print((totalStagesCount - 1) / stage)
-        }
-        
+        stageTypes.append(.finished)
         print(stageTypes)
     }
+
+
+
     
     func buildStageTimesArray() {
         /**
