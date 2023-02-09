@@ -35,6 +35,7 @@ final class GameSettings: ObservableObject {
     @Published var breakDuration: Int = 5
     @Published var labelBreakDuration: String = "minutes between sets"
     @Published var duration: Int = 6
+    @Published var durationSeconds: Int = 60
 
     @Published var combination: [Int] = []
     @Published var reps: [[Int]] = []
@@ -55,6 +56,7 @@ final class GameSettings: ObservableObject {
         let WorkoutTime: Int = roundsInSet * sets * roundDuration
         let RestTime: Int = (roundsInSet - 1) * sets * restDuration
         let Breaks: Int = (sets - 1) * ( breakDuration * 60 )
+        self.durationSeconds = WorkoutTime + RestTime + Breaks
         self.duration = ( WorkoutTime + RestTime + Breaks ) / 60
     }
     
@@ -105,13 +107,6 @@ final class GameSettings: ObservableObject {
     }
     
     func getStagesCount() -> Int {
-        /**
-         Some math to figure out exactly how many stages we have
-         A stage is a time period.
-         The first stage is 15 seconds of startup time before workout begins
-         Each round, break between rounds and rest between sets is a stage
-         Sooo... 1 + ( ( roundCount + roundCount - 1 ) * sets) ?
-         */
         return 1 + ( roundsInSet + roundsInSet - 1 ) * sets
     }
     
@@ -139,6 +134,8 @@ final class GameSettings: ObservableObject {
         /**
          Let's make an array with the sequential number of the stage (-1) as the index
          And the time in seconds when this stage starts
+         
+            TODO: do this next!!!
          */
         var stageStartTimes: [Int] = []
         

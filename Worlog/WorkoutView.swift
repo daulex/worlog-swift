@@ -9,8 +9,14 @@ import SwiftUI
 
 struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
-    @State var timeRemaining = 10
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+
+    @State var seconds: Int = 0
+    @State var timerIsPaused: Bool = true
+    
+    @State var timer: Timer? = nil
+    
+    
     var body: some View {
         VStack{
             Text("Score is: \(settings.score)")
@@ -18,22 +24,57 @@ struct WorkoutView: View {
                 settings.score += 1
             }
             
-
-                
-            Text("\(timeRemaining)")
-                .onReceive(timer) { _ in
-                    if timeRemaining > 0 {
-                        timeRemaining -= 1
-                    }
-                }
-                
             
-            Button("Stop", action: {
-                    self.timer.upstream.connect().cancel()
-                })
-
+            Text("\(seconds)")
+            if timerIsPaused {
+                HStack {
+                    Button(action:{
+                        self.restartTimer()
+                        print("RESTART")
+                    }){
+                        Image(systemName: "arrow.counterclockwise")
+                            .padding(.all)
+                    }
+                    .padding(.all)
+                    Button(action:{
+                        self.startTimer()
+                        print("START")
+                    }){
+                        Image(systemName: "play.fill")
+                            .padding(.all)
+                    }
+                    .padding(.all)
+                }
+            } else {
+                Button(action:{
+                    print("STOP")
+                    self.stopTimer()
+                }){
+                    Image(systemName: "pause.fill")
+                        .padding(.all)
+                }
+                .padding(.all)
+            }
+            
         }
     }
+    
+    func startTimer(){
+        timerIsPaused = false
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true){ tempTimer in
+            self.seconds = self.seconds + 1
+        }
+    }
+    
+    func stopTimer(){
+        timerIsPaused = true
+        timer?.invalidate()
+        timer = nil
+    }
+    func restartTimer(){
+        seconds = 0
+    }
+    
 }
 
 struct WorkoutView_Previews: PreviewProvider {
