@@ -12,13 +12,22 @@ struct WorkoutView: View {
     
     var body: some View {
         VStack{
-            Text("Score is: \(settings.score)")
-            Button("Increase Score") {
-                settings.score += 1
+            Text("Stage  \(settings.currentStage + 1) of \(settings.stageTypes.count) !")
+            Text("\(settings.stageTypes[settings.currentStage])" as String)
+            
+            WorkoutContentView(for: settings.stageTypes[settings.currentStage])
+            
+            if(settings.currentStage < settings.stageTypes.count - 1){
+                Button("Jump to next stage") {
+                    if(settings.stageTypes.count - 1 > settings.currentStage){
+                        settings.currentStage += 1
+                    }
+                }
+                
             }
             
             Button(action: {
-                
+                settings.isRunning = true
             }) {
                 Label("Start", systemImage: "play.fill")
                     .font(.headline)

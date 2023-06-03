@@ -10,6 +10,9 @@ import SwiftUI
 final class GameSettings: ObservableObject {
     @Published var score = 0
     
+    @Published var isRunning: Bool = false
+    @Published var currentStage: Int = 0
+    
     @Published var startingPunches: Int = 2
     @Published var labelStartingPunches = "Starting punches"
     
@@ -39,6 +42,8 @@ final class GameSettings: ObservableObject {
     @Published var combination: [Int] = []
     @Published var reps: [[Int]] = []
     @Published var rounds: [[[Int]]] = []
+    
+    @Published var stageTypes: [WorkoutStages] = []
     
     let leftArm = [1,3,5]
     let rightArm = [2,4,6]
@@ -116,7 +121,7 @@ final class GameSettings: ObservableObject {
     }
     
     func buildStageTypesArray() {
-        var stageTypes: [WorkoutStages] = []
+        stageTypes.removeAll()
         let stagesInSet: Int = roundsInSet + roundsInSet - 1
         stageTypes.append(.warmup)
 
@@ -133,29 +138,28 @@ final class GameSettings: ObservableObject {
     }
 
 
-
     
-    func buildStageTimesArray() {
-        /**
-         Let's make an array with the sequential number of the stage (-1) as the index
-         And the time in seconds when this stage starts
-         */
-        var stageStartTimes: [Int] = []
-        
-        for stage in 0..<getStagesCount() {
-            // if stage == 0 (startup), starts at 0
-            if stage == 0 {
-                stageStartTimes.append(0)
-            }
-            if stage == 1 {
-                stageStartTimes.append(15)
-            }
-        }
-        
-        print(stageStartTimes)
-        
-//        return stageStartTimes
-    }
+//    func buildStageTimesArray() {
+//        /**
+//         Let's make an array with the sequential number of the stage (-1) as the index
+//         And the time in seconds when this stage starts
+//         */
+//        var stageStartTimes: [Int] = []
+//
+//        for stage in 0..<getStagesCount() {
+//            // if stage == 0 (startup), starts at 0
+//            if stage == 0 {
+//                stageStartTimes.append(0)
+//            }
+//            if stage == 1 {
+//                stageStartTimes.append(15)
+//            }
+//        }
+//
+//        print(stageStartTimes)
+//
+////        return stageStartTimes
+//    }
     
 }
 

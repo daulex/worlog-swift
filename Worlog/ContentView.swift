@@ -72,7 +72,6 @@ struct ContentView: View {
         .environmentObject(settings)
         .onAppear{
             settings.initWorkoutGeneration()
-            settings.buildStageTimesArray()
             settings.buildStageTypesArray()
         }
     }
