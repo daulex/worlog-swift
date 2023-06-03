@@ -10,6 +10,13 @@ import SwiftUI
 struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
     
+
+    @State var seconds: Int = 0
+    @State var timerIsPaused: Bool = true
+    
+    @State var timer: Timer? = nil
+    
+    
     var body: some View {
         VStack{
             Text("Stage  \(settings.currentStage + 1) of \(settings.stageTypes.count) !")
