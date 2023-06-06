@@ -42,26 +42,26 @@ struct WorkoutSettingsFormView: View {
                 })
             }
             HStack {
-                Text("\(settings.restDuration) ")
+                Text("\(settings.durationShortRest) ")
                     .bold()
-                Stepper("\(settings.labelRestDuration)",
-                        value: $settings.restDuration,
+                Stepper("\(settings.labelShortRest)",
+                        value: $settings.durationShortRest,
                         in: 10...90,
                         step: 5)
-                .onChange(of: settings.restDuration, perform: { newValue in
+                .onChange(of: settings.durationShortRest, perform: { newValue in
                     settings.calculateDuration()
                     
                     
                 })
             }
             HStack {
-                Text("\(settings.breakDuration) ")
+                Text("\(settings.durationLongRest) ")
                     .bold()
-                Stepper("\(settings.labelBreakDuration)",
-                        value: $settings.breakDuration,
+                Stepper("\(settings.labelLongRest)",
+                        value: $settings.durationLongRest,
                         in: 1...10,
                         step: 1)
-                .onChange(of: settings.breakDuration, perform: { newValue in
+                .onChange(of: settings.durationLongRest, perform: { newValue in
                     settings.calculateDuration()
                     
                     

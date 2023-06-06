@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct WorkoutRoundView: View {
+    @EnvironmentObject var settings: GameSettings
+    
     var body: some View {
         Text("Hello, Round!")
+        Text("\(settings.stagePunches[settings.currentStage])")
+        Text("\(settings.roundDuration)")
     }
 }
 

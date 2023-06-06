@@ -17,10 +17,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack {
-                Text("Score: \(settings.score)")
-                Button("Increase Score") {
-                    settings.score += 1
-                }
+
                 Text("Worlog has generated a comfortable \n \(Int(settings.duration)) minute workout")
                     .multilineTextAlignment(.center)
                     .font(.headline)
