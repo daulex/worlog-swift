@@ -11,40 +11,81 @@ struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
     
 
-    @State var seconds: Int = 0
-    @State var timerIsPaused: Bool = true
-    
-    @State var timer: Timer? = nil
+    @State private var remainingTime: Int = 0
+
+    @State private var isPaused = true
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     
     var body: some View {
         VStack{
+            if(settings.currentStage < settings.stageTypes.count - 1){
+                
+                VStack {
+                    Text("\(remainingTime)")
+                        .font(.largeTitle)
+                        .padding()
+                    
+                    Button(action: {
+                        isPaused.toggle()
+                    }) {
+                        Text(isPaused ? "Resume" : "Pause")
+                            .font(.title)
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                }
+                .onReceive(timer) { _ in
+                    if !isPaused {
+                        if remainingTime > 1 {
+                            remainingTime -= 1
+                        } else {
+                            if(settings.stageTypes.count - 1 > settings.currentStage){
+                                remainingTime = 10
+                                settings.currentStage += 1
+                            } else {
+                                isPaused.toggle()
+                            }
+                        }
+                        
+                    }
+                }
+            }
+    
+    
             Text("Stage  \(settings.currentStage + 1) of \(settings.stageTypes.count) !")
             Text("\(settings.stageTypes[settings.currentStage])" as String)
             
+            
             WorkoutContentView(for: settings.stageTypes[settings.currentStage])
             
-            if(settings.currentStage < settings.stageTypes.count - 1){
-                Button("Jump to next stage") {
+            HStack{
+
+                Button(action:{
+                    if(settings.currentStage > 0){
+                        settings.currentStage -= 1
+                    }
+                }){
+                    Label("Prev", systemImage: "backward.fill")
+                }
+                Spacer()
+                Button(action:{
                     if(settings.stageTypes.count - 1 > settings.currentStage){
                         settings.currentStage += 1
                     }
+                }){
+                    Label("Next", systemImage: "forward.fill")
                 }
                 
             }
             
-            Button(action: {
-                settings.isRunning = true
-            }) {
-                Label("Start", systemImage: "play.fill")
-                    .font(.headline)
-                    .padding()
-                    .frame(width: 220)
-            }
-            .buttonStyle(.borderedProminent)
-            .padding(.top)
-
+            
         }
+        .onAppear {
+                remainingTime = settings.durationShortRest
+            }
     }
 }
 

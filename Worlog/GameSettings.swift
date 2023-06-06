@@ -47,9 +47,6 @@ final class GameSettings: ObservableObject {
     
     let leftArm = [1,3,5]
     let rightArm = [2,4,6]
-// Todo? rework arms to sets instead of arrays?
-//    let leftArm: Set<Int> = [1,3,5]
-//    let rightArm: Set<Int> = [2,4,6]
     
     func initWorkoutGeneration(){
         generateRounds()
