@@ -30,13 +30,13 @@ struct WorkoutSettingsFormView: View {
                     
                 })
             HStack {
-                Text("\(settings.roundDuration) ")
+                Text("\(settings.durationRound) ")
                     .bold()
                 Stepper("\(settings.labelRoundDuration)",
-                        value: $settings.roundDuration,
+                        value: $settings.durationRound,
                         in: 30...180,
                         step: 5)
-                .onChange(of: settings.roundDuration, perform: { newValue in
+                .onChange(of: settings.durationRound, perform: { newValue in
                     settings.calculateDuration()
                     
                 })

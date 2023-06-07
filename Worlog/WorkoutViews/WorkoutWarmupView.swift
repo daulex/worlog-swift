@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkoutWarmupView: View {
     var body: some View {
-        Text("Hello, warmup!")
+        Text("Warmup!")
     }
 }
 

@@ -9,89 +9,96 @@ import SwiftUI
 
 struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
-    
-
-    @State private var remainingTime: Int = 0
-
-    @State private var isPaused = true
+    @State var remainingTime: Int = 0
+    @State private var isPaused = false
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    var currentStage: WorkoutStages {
+        settings.stageTypes[settings.currentStage]
+    }
+    
+    var durationForCurrentStage: Int {
+        settings.getDurationForStage(currentStage)
+    }
+    
+    var isLastStage: Bool {
+        settings.currentStage == settings.stageTypes.count - 1
+    }
     
     var body: some View {
-        VStack{
-            if(settings.currentStage < settings.stageTypes.count - 1){
-                
-                VStack {
+        VStack {
+            
+            Spacer()
+            WorkoutContentView(for: currentStage)
+            Spacer()
+            HStack {
+                if !isLastStage {
                     Text("\(remainingTime)")
-                        .font(.largeTitle)
+                        .font(.headline)
                         .padding()
+                    Spacer()
+                }
+                
+                if isLastStage {
+                    Button(action: {
+                        attemptStageChange(0)
+                    }) {
+                        Image(systemName: "restart")
+                    }.padding()
+                }
+                
+                Button(action: {
+                    attemptStageChange(-1)
+                }) {
+                    Image(systemName: "backward.fill")
+                }.padding()
+                
+                if !isLastStage {
+                    Button(action: {
+                        attemptStageChange(1)
+                    }) {
+                        Image(systemName: "forward.fill")
+                    }.padding()
                     
                     Button(action: {
                         isPaused.toggle()
                     }) {
-                        Text(isPaused ? "Resume" : "Pause")
-                            .font(.title)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
+                        Image(systemName: isPaused ? "play.circle.fill" : "pause.circle.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(.blue)
+                    }.padding()
                 }
-                .onReceive(timer) { _ in
-                    if !isPaused {
-                        if remainingTime > 1 {
-                            remainingTime -= 1
-                        } else {
-                            if(settings.stageTypes.count - 1 > settings.currentStage){
-                                remainingTime = 10
-                                settings.currentStage += 1
-                            } else {
-                                isPaused.toggle()
-                            }
-                        }
-                        
+            }
+            .onReceive(timer) { _ in
+                if !isPaused {
+                    if remainingTime != 0 {
+                        remainingTime -= 1
+                    } else {
+                        attemptStageChange(1)
                     }
                 }
             }
-    
-    
-            Text("Stage  \(settings.currentStage + 1) of \(settings.stageTypes.count) !")
-            Text("\(settings.stageTypes[settings.currentStage])" as String)
+            .padding()
             
-            
-            WorkoutContentView(for: settings.stageTypes[settings.currentStage])
-            
-            HStack{
-
-                Button(action:{
-                    if(settings.currentStage > 0){
-                        settings.currentStage -= 1
-                    }
-                }){
-                    Label("Prev", systemImage: "backward.fill")
-                }
-                Spacer()
-                Button(action:{
-                    if(settings.stageTypes.count - 1 > settings.currentStage){
-                        settings.currentStage += 1
-                    }
-                }){
-                    Label("Next", systemImage: "forward.fill")
-                }
-                
-            }
-            
+            Text("\(settings.currentStage + 1) of \(settings.stageTypes.count)")
             
         }
         .onAppear {
-                remainingTime = settings.durationShortRest
+            attemptStageChange(0)
+        }
+    }
+    
+    func attemptStageChange(_ direction: Int) {
+        if direction == 0 {
+            settings.currentStage = 0
+        } else {
+            let nextStage = settings.currentStage + direction
+            if nextStage >= 0 && nextStage < settings.stageTypes.count {
+                settings.currentStage = nextStage
             }
+        }
+        remainingTime = settings.getDurationForStage(settings.stageTypes[settings.currentStage])
     }
-}
 
-struct WorkoutView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkoutView()
-            .environmentObject(GameSettings())
-    }
+
 }

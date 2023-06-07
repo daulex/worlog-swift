@@ -30,13 +30,13 @@ final class GameSettings: ObservableObject {
     @Published var increasePunches: Bool = true
     @Published var labelIncreasePunches = "Each round increases punches"
     
-    @Published var roundDuration: Int = 60
+    @Published var durationRound: Int = 60
     @Published var labelRoundDuration: String = "seconds in a round"
     @Published var durationShortRest: Int = 30
     @Published var labelShortRest: String = "seconds between rounds"
     @Published var durationLongRest: Int = 5
     @Published var labelLongRest: String = "minutes between sets"
-    @Published var duration: Int = 6
+    @Published var duration: Int = 0
 
     @Published var combination: [Int] = []
     @Published var reps: [[Int]] = []
@@ -53,9 +53,8 @@ final class GameSettings: ObservableObject {
         calculateDuration()
     }
     
- 
     func calculateDuration(){
-        let WorkoutTime: Int = roundsInSet * sets * roundDuration
+        let WorkoutTime: Int = roundsInSet * sets * durationRound
         let RestTime: Int = (roundsInSet - 1) * sets * durationShortRest
         let Breaks: Int = (sets - 1) * ( durationLongRest * 60 )
         self.duration = ( WorkoutTime + RestTime + Breaks ) / 60
@@ -108,13 +107,6 @@ final class GameSettings: ObservableObject {
     }
     
     func getStagesCount() -> Int {
-        /**
-         Some math to figure out exactly how many stages we have
-         A stage is a time period.
-         The first stage is 15 seconds of startup time before workout begins
-         Each round, break between rounds and rest between sets is a stage
-         Sooo... 1 + ( ( roundCount + roundCount - 1 ) * sets) ?
-         */
         return 1 + ( roundsInSet + roundsInSet - 1 ) * sets
     }
     
@@ -133,7 +125,7 @@ final class GameSettings: ObservableObject {
             tmpPunches = rounds[i]
             for j in 0..<stagesInSet {
                 stageTypes.append(j % 2 == 0 ? .round : .shortRest)
-                stagePunches.append(j % 2 == 0 ? tmpPunches.removeFirst().map { String($0) }.joined(separator: ", ") : "SR")
+                stagePunches.append(j % 2 == 0 ? tmpPunches.removeFirst().map { String($0) }.joined(separator: " ") : "SR")
             }
             
             if i < sets-1 {
@@ -145,32 +137,22 @@ final class GameSettings: ObservableObject {
         stageTypes.append(.finished)
         stagePunches.append("f")
     }
-
-
-
     
-//    func buildStageTimesArray() {
-//        /**
-//         Let's make an array with the sequential number of the stage (-1) as the index
-//         And the time in seconds when this stage starts
-//         */
-//        var stageStartTimes: [Int] = []
-//
-//        for stage in 0..<getStagesCount() {
-//            // if stage == 0 (startup), starts at 0
-//            if stage == 0 {
-//                stageStartTimes.append(0)
-//            }
-//            if stage == 1 {
-//                stageStartTimes.append(15)
-//            }
-//        }
-//
-//        print(stageStartTimes)
-//
-////        return stageStartTimes
-//    }
-    
+    func getDurationForStage(_ stageType: WorkoutStages) -> Int {
+        switch stageType {
+        case .warmup:
+            return durationShortRest
+        case .round:
+            return durationRound
+        case .shortRest:
+            return durationShortRest
+        case .longRest:
+            return durationLongRest * 60
+        case .finished:
+            return 0
+        }
+    }
+
 }
 
 enum WorkoutStages {

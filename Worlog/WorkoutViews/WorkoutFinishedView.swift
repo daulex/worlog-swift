@@ -9,7 +9,9 @@ import SwiftUI
 
 struct WorkoutFinishedView: View {
     var body: some View {
-        Text("Hello, Finished view!")
+        Text("Workout finished.")
+        Text("Great job!")
+            .font(.headline)
     }
 }
 

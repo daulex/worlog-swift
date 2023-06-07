@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkoutLongRestView: View {
     var body: some View {
-        Text("Hello, Long Rest!")
+        Text("Long Rest!")
     }
 }
 
