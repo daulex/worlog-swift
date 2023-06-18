@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct WorkoutShortRestView: View {
+    
     var body: some View {
-        Text("Short rest")
+        
+        VStack{
+            Text("Short rest")
+                .font(.largeTitle)
+            WorkoutComingUPview()
+            
+        }
     }
 }
 

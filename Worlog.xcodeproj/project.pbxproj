@@ -17,6 +17,7 @@
 		CACE209B2979904E00BA113B /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACE209A2979904E00BA113B /* WorkoutView.swift */; };
 		CACE209D297997BE00BA113B /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACE209C297997BE00BA113B /* GameSettings.swift */; };
 		CACE209F2979B92B00BA113B /* WorkoutSettingsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACE209E2979B92B00BA113B /* WorkoutSettingsFormView.swift */; };
+		CADAD82F2A3F0938005F7AC2 /* WorkoutComingUPview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADAD82E2A3F0938005F7AC2 /* WorkoutComingUPview.swift */; };
 		CADBA9302A2B779800D8B684 /* WorkoutViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA92F2A2B779800D8B684 /* WorkoutViewBuilder.swift */; };
 		CADBA9332A2B77CF00D8B684 /* WorkoutWarmupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA9322A2B77CF00D8B684 /* WorkoutWarmupView.swift */; };
 		CADBA9352A2B784E00D8B684 /* WorkoutShortRestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA9342A2B784E00D8B684 /* WorkoutShortRestView.swift */; };
@@ -38,6 +39,7 @@
 		CACE209A2979904E00BA113B /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		CACE209C297997BE00BA113B /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		CACE209E2979B92B00BA113B /* WorkoutSettingsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettingsFormView.swift; sourceTree = "<group>"; };
+		CADAD82E2A3F0938005F7AC2 /* WorkoutComingUPview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutComingUPview.swift; sourceTree = "<group>"; };
 		CADBA92F2A2B779800D8B684 /* WorkoutViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewBuilder.swift; sourceTree = "<group>"; };
 		CADBA9322A2B77CF00D8B684 /* WorkoutWarmupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutWarmupView.swift; sourceTree = "<group>"; };
 		CADBA9342A2B784E00D8B684 /* WorkoutShortRestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutShortRestView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				CADBA9322A2B77CF00D8B684 /* WorkoutWarmupView.swift */,
+				CADAD82E2A3F0938005F7AC2 /* WorkoutComingUPview.swift */,
 				CADBA9342A2B784E00D8B684 /* WorkoutShortRestView.swift */,
 				CADBA9382A2B78BA00D8B684 /* WorkoutLongRestView.swift */,
 				CADBA9362A2B789000D8B684 /* WorkoutRoundView.swift */,
@@ -143,7 +146,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					CA7B1769296BFFEF009DF330 = {
 						CreatedOnToolsVersion = 14.2;
@@ -192,6 +195,7 @@
 				CADBA93B2A2B78D200D8B684 /* WorkoutFinishedView.swift in Sources */,
 				CADBA9302A2B779800D8B684 /* WorkoutViewBuilder.swift in Sources */,
 				CA7B177D296C0368009DF330 /* FormNumericStepper.swift in Sources */,
+				CADAD82F2A3F0938005F7AC2 /* WorkoutComingUPview.swift in Sources */,
 				CADBA9332A2B77CF00D8B684 /* WorkoutWarmupView.swift in Sources */,
 				CA7B177F296C0DE9009DF330 /* FormToggle.swift in Sources */,
 				CA7B1770296BFFEF009DF330 /* ContentView.swift in Sources */,
@@ -238,6 +242,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -296,6 +301,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -323,6 +329,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Worlog/Preview Content\"";
 				DEVELOPMENT_TEAM = UC3956W482;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -369,6 +376,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Worlog/Preview Content\"";
 				DEVELOPMENT_TEAM = UC3956W482;
 				ENABLE_HARDENED_RUNTIME = YES;

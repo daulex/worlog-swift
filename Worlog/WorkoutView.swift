@@ -6,6 +6,12 @@
 //
 
 import SwiftUI
+import AudioToolbox
+
+func playSystemSound(_ soundID: SystemSoundID) {
+    AudioServicesPlaySystemSound(soundID)
+}
+
 
 struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
@@ -72,7 +78,14 @@ struct WorkoutView: View {
             .onReceive(timer) { _ in
                 if !isPaused {
                     if remainingTime != 0 {
+                        if remainingTime == 1 {
+                            playSystemSound(SystemSoundID(1013))
+                        }
+                        if [4, 3, 2].contains(remainingTime) {
+                            playSystemSound(SystemSoundID(1105))
+                        }
                         remainingTime -= 1
+                        
                     } else {
                         attemptStageChange(1)
                     }
@@ -85,6 +98,7 @@ struct WorkoutView: View {
         }
         .onAppear {
             attemptStageChange(0)
+            UIApplication.shared.isIdleTimerDisabled = true
         }
     }
     

@@ -9,7 +9,12 @@ import SwiftUI
 
 struct WorkoutLongRestView: View {
     var body: some View {
-        Text("Long Rest!")
+        VStack{
+            Text("Long rest")
+                .font(.largeTitle)
+            WorkoutComingUPview()
+            
+        }
     }
 }
 

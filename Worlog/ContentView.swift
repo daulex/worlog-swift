@@ -14,10 +14,13 @@ struct ContentView: View {
     @State private var showResult = false
     @State private var showForm = false
     
+    
+
+    
     var body: some View {
         NavigationView{
             VStack {
-
+                
                 Text("Worlog has generated a comfortable \n \(Int(settings.duration)) minute workout")
                     .multilineTextAlignment(.center)
                     .font(.headline)

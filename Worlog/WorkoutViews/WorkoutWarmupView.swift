@@ -9,7 +9,11 @@ import SwiftUI
 
 struct WorkoutWarmupView: View {
     var body: some View {
-        Text("Warmup!")
+        VStack{
+            Text("Warmup!")
+                .font(.largeTitle)
+            WorkoutComingUPview()
+        }
     }
 }
 
