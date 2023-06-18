@@ -141,7 +141,7 @@ final class GameSettings: ObservableObject {
     func getDurationForStage(_ stageType: WorkoutStages) -> Int {
         switch stageType {
         case .warmup:
-            return durationShortRest
+            return durationShortRest / 2
         case .round:
             return durationRound
         case .shortRest:

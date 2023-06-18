@@ -14,9 +14,6 @@ struct ContentView: View {
     @State private var showResult = false
     @State private var showForm = false
     
-    
-
-    
     var body: some View {
         NavigationView{
             VStack {

@@ -75,19 +75,6 @@ struct WorkoutSettingsFormView: View {
             FormToggle(value: $settings.increasePunches, label:
                         $settings.labelIncreasePunches)
             
-//            Button(action: {
-//                self.settings.initWorkoutGeneration()
-//                self.settings.calculateDuration()
-//                self.showForm.toggle()
-//            }) {
-//                Label("Re-Generate", systemImage: "sparkles")
-//                    .font(.headline)
-//                    .foregroundColor(.white)
-//                    .padding()
-//                    .frame(width: 220)
-//            }
-//            .buttonStyle(.borderedProminent)
-//            .padding(.top)
         }
         .environmentObject(settings)
     }

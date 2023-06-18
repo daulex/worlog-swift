@@ -18,6 +18,8 @@
 		CACE209D297997BE00BA113B /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACE209C297997BE00BA113B /* GameSettings.swift */; };
 		CACE209F2979B92B00BA113B /* WorkoutSettingsFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACE209E2979B92B00BA113B /* WorkoutSettingsFormView.swift */; };
 		CADAD82F2A3F0938005F7AC2 /* WorkoutComingUPview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADAD82E2A3F0938005F7AC2 /* WorkoutComingUPview.swift */; };
+		CADB8B282A3F83B1005BAF5F /* beep-prepare.wav in Resources */ = {isa = PBXBuildFile; fileRef = CADB8B262A3F83B1005BAF5F /* beep-prepare.wav */; };
+		CADB8B292A3F83B1005BAF5F /* beep-go.wav in Resources */ = {isa = PBXBuildFile; fileRef = CADB8B272A3F83B1005BAF5F /* beep-go.wav */; };
 		CADBA9302A2B779800D8B684 /* WorkoutViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA92F2A2B779800D8B684 /* WorkoutViewBuilder.swift */; };
 		CADBA9332A2B77CF00D8B684 /* WorkoutWarmupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA9322A2B77CF00D8B684 /* WorkoutWarmupView.swift */; };
 		CADBA9352A2B784E00D8B684 /* WorkoutShortRestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADBA9342A2B784E00D8B684 /* WorkoutShortRestView.swift */; };
@@ -40,6 +42,8 @@
 		CACE209C297997BE00BA113B /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		CACE209E2979B92B00BA113B /* WorkoutSettingsFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettingsFormView.swift; sourceTree = "<group>"; };
 		CADAD82E2A3F0938005F7AC2 /* WorkoutComingUPview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutComingUPview.swift; sourceTree = "<group>"; };
+		CADB8B262A3F83B1005BAF5F /* beep-prepare.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beep-prepare.wav"; sourceTree = "<group>"; };
+		CADB8B272A3F83B1005BAF5F /* beep-go.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beep-go.wav"; sourceTree = "<group>"; };
 		CADBA92F2A2B779800D8B684 /* WorkoutViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewBuilder.swift; sourceTree = "<group>"; };
 		CADBA9322A2B77CF00D8B684 /* WorkoutWarmupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutWarmupView.swift; sourceTree = "<group>"; };
 		CADBA9342A2B784E00D8B684 /* WorkoutShortRestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutShortRestView.swift; sourceTree = "<group>"; };
@@ -63,6 +67,8 @@
 		CA7B1761296BFFEF009DF330 = {
 			isa = PBXGroup;
 			children = (
+				CADB8B272A3F83B1005BAF5F /* beep-go.wav */,
+				CADB8B262A3F83B1005BAF5F /* beep-prepare.wav */,
 				CA7B176C296BFFEF009DF330 /* Worlog */,
 				CA7B176B296BFFEF009DF330 /* Products */,
 			);
@@ -176,7 +182,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CADB8B282A3F83B1005BAF5F /* beep-prepare.wav in Resources */,
 				CA7B1776296BFFF1009DF330 /* Preview Assets.xcassets in Resources */,
+				CADB8B292A3F83B1005BAF5F /* beep-go.wav in Resources */,
 				CA7B1772296BFFF1009DF330 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

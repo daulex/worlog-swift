@@ -6,18 +6,16 @@
 //
 
 import SwiftUI
-import AudioToolbox
-
-func playSystemSound(_ soundID: SystemSoundID) {
-    AudioServicesPlaySystemSound(soundID)
-}
-
+import AVFoundation
 
 struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
     @State var remainingTime: Int = 0
     @State private var isPaused = false
+    let soundPrepareURL = Bundle.main.url(forResource: "beep-prepare", withExtension: "wav")
+    let soundGoURL = Bundle.main.url(forResource: "beep-go", withExtension: "wav")
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var audioPlayer: AVAudioPlayer?
     
     var currentStage: WorkoutStages {
         settings.stageTypes[settings.currentStage]
@@ -79,10 +77,14 @@ struct WorkoutView: View {
                 if !isPaused {
                     if remainingTime != 0 {
                         if remainingTime == 1 {
-                            playSystemSound(SystemSoundID(1013))
+                            if let url = soundGoURL {
+                                playSound(url: url)
+                            }
                         }
                         if [4, 3, 2].contains(remainingTime) {
-                            playSystemSound(SystemSoundID(1105))
+                            if let url = soundPrepareURL {
+                                playSound(url: url)
+                            }
                         }
                         remainingTime -= 1
                         
@@ -112,6 +114,17 @@ struct WorkoutView: View {
             }
         }
         remainingTime = settings.getDurationForStage(settings.stageTypes[settings.currentStage])
+    }
+    
+    func playSound(url: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0 // Adjust the volume as needed
+            audioPlayer?.numberOfLoops = 0 // Play the sound only once
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound: \(error.localizedDescription)")
+        }
     }
 
 
