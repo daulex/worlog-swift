@@ -28,6 +28,15 @@ struct WorkoutView: View {
     var isLastStage: Bool {
         settings.currentStage == settings.stageTypes.count - 1
     }
+    init() {
+        // Configure audio session
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Error setting up audio session: \(error.localizedDescription)")
+        }
+    }
     
     var body: some View {
         VStack {
@@ -117,6 +126,8 @@ struct WorkoutView: View {
     }
     
     func playSound(url: URL) {
+        
+        // Play sound
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.volume = 1.0 // Adjust the volume as needed
@@ -126,6 +137,7 @@ struct WorkoutView: View {
             print("Error playing sound: \(error.localizedDescription)")
         }
     }
+
 
 
 }

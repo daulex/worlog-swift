@@ -20,9 +20,3 @@ struct WorkoutComingUPview: View {
         }
     }
 }
-
-struct WorkoutComingUPview_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkoutComingUPview()
-    }
-}

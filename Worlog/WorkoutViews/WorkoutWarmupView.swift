@@ -16,9 +16,3 @@ struct WorkoutWarmupView: View {
         }
     }
 }
-
-struct WorkoutWarmupView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkoutWarmupView()
-    }
-}
