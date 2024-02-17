@@ -104,7 +104,7 @@ struct WorkoutView: View {
             }
             .padding()
             
-            Text("\(settings.currentStage + 1) of \(settings.stageTypes.count)")
+            Text("\(settings.currentStage + 1) of \(settings.stageTypes.count - 1)")
             
         }
         .onAppear {

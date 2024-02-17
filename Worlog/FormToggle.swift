@@ -10,7 +10,7 @@ import SwiftUI
 struct FormToggle: View {
     
     @Binding var value: Bool
-    @Binding var label: String
+    var label: String
     
     var body: some View {
         Toggle(label, isOn: $value)
@@ -21,7 +21,7 @@ struct FormToggle_Previews: PreviewProvider {
     static var previews: some View {
         FormToggle(
             value: .constant(true),
-            label: .constant("Label")
+            label: "Label"
         )
     }
 }

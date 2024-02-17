@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA5143F62B810D800009386D /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5143F52B810D800009386D /* Strings.swift */; };
 		CA6105842972ED0800DCCD87 /* GenerationResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6105832972ED0800DCCD87 /* GenerationResultView.swift */; };
 		CA7B176E296BFFEF009DF330 /* WorlogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B176D296BFFEF009DF330 /* WorlogApp.swift */; };
 		CA7B1770296BFFEF009DF330 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7B176F296BFFEF009DF330 /* ContentView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA5143F52B810D800009386D /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		CA6105832972ED0800DCCD87 /* GenerationResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationResultView.swift; sourceTree = "<group>"; };
 		CA7B176A296BFFEF009DF330 /* Worlog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Worlog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA7B176D296BFFEF009DF330 /* WorlogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorlogApp.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				CAFF718D297075440069BB93 /* Info.plist */,
 				CA7B176D296BFFEF009DF330 /* WorlogApp.swift */,
+				CA5143F52B810D800009386D /* Strings.swift */,
 				CADBA9312A2B77B700D8B684 /* WorkoutViews */,
 				CACE209C297997BE00BA113B /* GameSettings.swift */,
 				CA7B176F296BFFEF009DF330 /* ContentView.swift */,
@@ -198,6 +201,7 @@
 			files = (
 				CADBA9352A2B784E00D8B684 /* WorkoutShortRestView.swift in Sources */,
 				CACE209D297997BE00BA113B /* GameSettings.swift in Sources */,
+				CA5143F62B810D800009386D /* Strings.swift in Sources */,
 				CACE209B2979904E00BA113B /* WorkoutView.swift in Sources */,
 				CADBA9372A2B789000D8B684 /* WorkoutRoundView.swift in Sources */,
 				CADBA93B2A2B78D200D8B684 /* WorkoutFinishedView.swift in Sources */,

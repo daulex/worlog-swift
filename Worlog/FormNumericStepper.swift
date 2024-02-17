@@ -10,7 +10,7 @@ import SwiftUI
 struct FormNumericStepper: View {
     
     @Binding var value: Int
-    @Binding var label: String
+    var label: String
     
     let range = 1...8
     
@@ -18,7 +18,7 @@ struct FormNumericStepper: View {
         HStack {
             Text("\(value) ")
                 .bold()
-            Stepper("\(label)", value: $value, in: range)
+            Stepper(label, value: $value, in: range)
         }
     }
 }
@@ -27,7 +27,7 @@ struct FormNumericStepper_Previews: PreviewProvider {
     static var previews: some View {
         FormNumericStepper(
             value: .constant(3),
-            label: .constant("Label")
+            label: "Label"
         )
     }
 }

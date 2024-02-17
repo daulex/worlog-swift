@@ -12,19 +12,19 @@ struct WorkoutSettingsFormView: View {
     var body: some View {
         VStack{
             FormNumericStepper(value: $settings.startingPunches,
-                               label: $settings.labelStartingPunches)
+                               label: Strings.startingPunches )
                 .onChange(of: settings.startingPunches, perform: { newValue in
                     settings.calculateDuration()
                     
                 })
             FormNumericStepper(value: $settings.roundsInSet,
-                               label: $settings.labelRoundsInSet)
+                               label: Strings.roundsInSet)
                 .onChange(of: settings.roundsInSet, perform: { newValue in
                     settings.calculateDuration()
                     
                 })
             FormNumericStepper(value: $settings.sets,
-                               label: $settings.labelSets)
+                               label: Strings.sets)
                 .onChange(of: settings.sets, perform: { newValue in
                     settings.calculateDuration()
                     
@@ -32,7 +32,7 @@ struct WorkoutSettingsFormView: View {
             HStack {
                 Text("\(settings.durationRound) ")
                     .bold()
-                Stepper("\(settings.labelRoundDuration)",
+                Stepper(Strings.roundDuration,
                         value: $settings.durationRound,
                         in: 30...180,
                         step: 5)
@@ -44,7 +44,7 @@ struct WorkoutSettingsFormView: View {
             HStack {
                 Text("\(settings.durationShortRest) ")
                     .bold()
-                Stepper("\(settings.labelShortRest)",
+                Stepper(Strings.shortRest,
                         value: $settings.durationShortRest,
                         in: 10...90,
                         step: 5)
@@ -57,7 +57,7 @@ struct WorkoutSettingsFormView: View {
             HStack {
                 Text("\(settings.durationLongRest) ")
                     .bold()
-                Stepper("\(settings.labelLongRest)",
+                Stepper(Strings.longRest,
                         value: $settings.durationLongRest,
                         in: 1...10,
                         step: 1)
@@ -69,11 +69,11 @@ struct WorkoutSettingsFormView: View {
             }
             
             FormToggle(value: $settings.noDoubles,
-                       label: $settings.labelNoDoubles)
+                       label: Strings.noDoubles)
             FormToggle(value: $settings.alternateArms,
-                       label: $settings.labelAlternateArms)
+                       label: Strings.alternateArms)
             FormToggle(value: $settings.increasePunches, label:
-                        $settings.labelIncreasePunches)
+                        Strings.increasePunches)
             
         }
         .environmentObject(settings)
