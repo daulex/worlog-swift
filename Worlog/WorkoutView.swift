@@ -10,6 +10,7 @@ import AVFoundation
 
 struct WorkoutView: View {
     @EnvironmentObject var settings: GameSettings
+    @EnvironmentObject var state: GameState
     @State var remainingTime: Int = 0
     @State private var isPaused = false
     let soundPrepareURL = Bundle.main.url(forResource: "beep-prepare", withExtension: "wav")
@@ -18,7 +19,7 @@ struct WorkoutView: View {
     @State private var audioPlayer: AVAudioPlayer?
     
     var currentStage: WorkoutStages {
-        settings.stageTypes[settings.currentStage]
+        settings.stageTypes[state.currentStage]
     }
     
     var durationForCurrentStage: Int {
@@ -26,7 +27,7 @@ struct WorkoutView: View {
     }
     
     var isLastStage: Bool {
-        settings.currentStage == settings.stageTypes.count - 1
+        state.currentStage == settings.stageTypes.count - 1
     }
     init() {
         // Configure audio session
@@ -104,25 +105,34 @@ struct WorkoutView: View {
             }
             .padding()
             
-            Text("\(settings.currentStage + 1) of \(settings.stageTypes.count - 1)")
+            Text("\(state.currentStage + 1) of \(settings.stageTypes.count - 1)")
             
         }
         .onAppear {
             attemptStageChange(0)
             UIApplication.shared.isIdleTimerDisabled = true
         }
+        .onDisappear(){
+            UIApplication.shared.isIdleTimerDisabled = false
+            isPaused = true
+            do {
+                try AVAudioSession.sharedInstance().setActive(false)
+            } catch {
+                print("Error deactivating audio session: \(error.localizedDescription)")
+            }
+        }
     }
     
     func attemptStageChange(_ direction: Int) {
         if direction == 0 {
-            settings.currentStage = 0
+            state.currentStage = 0
         } else {
-            let nextStage = settings.currentStage + direction
+            let nextStage = state.currentStage + direction
             if nextStage >= 0 && nextStage < settings.stageTypes.count {
-                settings.currentStage = nextStage
+                state.currentStage = nextStage
             }
         }
-        remainingTime = settings.getDurationForStage(settings.stageTypes[settings.currentStage])
+        remainingTime = settings.getDurationForStage(settings.stageTypes[state.currentStage])
     }
     
     func playSound(url: URL) {

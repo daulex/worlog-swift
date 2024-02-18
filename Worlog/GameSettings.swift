@@ -7,23 +7,59 @@
 
 import SwiftUI
 
-final class GameSettings: ObservableObject {
-    
-    // Game state
+final class GameState: ObservableObject {
     @Published var isRunning: Bool = false
     @Published var currentStage: Int = 0
+}
+
+final class GameSettings: ObservableObject {
     
     // Game settings
-    @Published var startingPunches: Int = 2
-    @Published var roundsInSet: Int = 5
-    @Published var sets: Int = 4
-    @Published var noDoubles: Bool = false
-    @Published var alternateArms: Bool = true
-    @Published var increasePunches: Bool = true
-    @Published var durationRound: Int = 60
-    @Published var durationShortRest: Int = 30
-    @Published var durationLongRest: Int = 5
-    @Published var duration: Int = 0
+    @Published var startingPunches: Int = 2 {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var roundsInSet: Int = 5 {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var sets: Int = 4 {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var noDoubles: Bool = false {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var alternateArms: Bool = true {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var increasePunches: Bool = true {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var durationRound: Int = 60 {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var durationShortRest: Int = 30 {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
+    @Published var durationLongRest: Int = 5 {
+        didSet {
+            initWorkoutGeneration()
+        }
+    }
 
     @Published var combination: [Int] = []
     @Published var reps: [[Int]] = []
@@ -31,6 +67,9 @@ final class GameSettings: ObservableObject {
     
     @Published var stageTypes: [WorkoutStages] = []
     @Published var stagePunches: [String] = []
+    
+    @Published var duration: Int = 0
+
     
     func initWorkoutGeneration(){
         generateRounds()

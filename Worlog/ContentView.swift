@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var settings = GameSettings()
+    @StateObject var state = GameState()
     
     @State private var showResult = false
     @State private var showForm = false
@@ -67,6 +68,7 @@ struct ContentView: View {
             .padding(.horizontal)
         }
         .environmentObject(settings)
+        .environmentObject(state)
         .onAppear{
             settings.initWorkoutGeneration()
             settings.buildStageTypesArray()

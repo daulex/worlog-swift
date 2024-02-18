@@ -9,26 +9,16 @@ import SwiftUI
 
 struct WorkoutSettingsFormView: View {
     @EnvironmentObject var settings: GameSettings
+    @EnvironmentObject var state: GameState
     var body: some View {
         VStack{
             FormNumericStepper(value: $settings.startingPunches,
                                label: Strings.startingPunches )
-                .onChange(of: settings.startingPunches, perform: { newValue in
-                    settings.calculateDuration()
-                    
-                })
             FormNumericStepper(value: $settings.roundsInSet,
                                label: Strings.roundsInSet)
-                .onChange(of: settings.roundsInSet, perform: { newValue in
-                    settings.calculateDuration()
-                    
-                })
             FormNumericStepper(value: $settings.sets,
                                label: Strings.sets)
-                .onChange(of: settings.sets, perform: { newValue in
-                    settings.calculateDuration()
-                    
-                })
+
             HStack {
                 Text("\(settings.durationRound) ")
                     .bold()
@@ -36,10 +26,6 @@ struct WorkoutSettingsFormView: View {
                         value: $settings.durationRound,
                         in: 30...180,
                         step: 5)
-                .onChange(of: settings.durationRound, perform: { newValue in
-                    settings.calculateDuration()
-                    
-                })
             }
             HStack {
                 Text("\(settings.durationShortRest) ")
@@ -48,11 +34,6 @@ struct WorkoutSettingsFormView: View {
                         value: $settings.durationShortRest,
                         in: 10...90,
                         step: 5)
-                .onChange(of: settings.durationShortRest, perform: { newValue in
-                    settings.calculateDuration()
-                    
-                    
-                })
             }
             HStack {
                 Text("\(settings.durationLongRest) ")
@@ -61,11 +42,6 @@ struct WorkoutSettingsFormView: View {
                         value: $settings.durationLongRest,
                         in: 1...10,
                         step: 1)
-                .onChange(of: settings.durationLongRest, perform: { newValue in
-                    settings.calculateDuration()
-                    
-                    
-                })
             }
             
             FormToggle(value: $settings.noDoubles,
@@ -77,6 +53,8 @@ struct WorkoutSettingsFormView: View {
             
         }
         .environmentObject(settings)
+        .environmentObject(state)
+        
     }
 }
 

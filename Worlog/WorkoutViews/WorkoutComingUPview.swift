@@ -9,11 +9,12 @@ import SwiftUI
 
 struct WorkoutComingUPview: View {
     @EnvironmentObject var settings: GameSettings
+    @EnvironmentObject var state: GameState
     var body: some View {
-        if settings.stagePunches.indices.contains(settings.currentStage + 1) {
+        if settings.stagePunches.indices.contains(state.currentStage + 1) {
             VStack{
                 Text("Coming up")
-                Text("\(settings.stagePunches[settings.currentStage + 1])")
+                Text("\(settings.stagePunches[state.currentStage + 1])")
                     .font(.largeTitle)
             }
             .padding()

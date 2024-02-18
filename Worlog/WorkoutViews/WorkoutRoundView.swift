@@ -9,10 +9,11 @@ import SwiftUI
 
 struct WorkoutRoundView: View {
     @EnvironmentObject var settings: GameSettings
+    @EnvironmentObject var state: GameState
     
     var body: some View {
         
-        Text("\(settings.stagePunches[settings.currentStage])")
+        Text("\(settings.stagePunches[state.currentStage])")
             .font(.largeTitle)
         
     }
